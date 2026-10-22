@@ -22,4 +22,12 @@
   - change colour
 
 ## Player
-hand
+- hand
+
+## Manager
+- creates deck
+- keeps track of turn order
+- keeps track of cards in each players hand
+
+## Scorecard
+- when someone wins, add up value of all cards in rest of players and assign to winner
