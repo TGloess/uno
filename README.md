@@ -26,12 +26,16 @@
 - ~~hand~~
 - ~~play card~~
 - ~~draw card~~
-- ~~check is chosen card is legal~~
+- check is chosen card is legal
+  - done for case when player inputs a wrong card
+  - still need to add a check for Wild Draw Four
 
 ## Manager
 - ~~creates deck~~
 - ~~keeps track of turn order~~
 - ~~keeps track of cards in each players hand~~
+- allow players to declare uno
+- allow other players to challenge undeclared unos
 - know about house rules
   - 0 - rotate hands
   - 7 - swap hands
