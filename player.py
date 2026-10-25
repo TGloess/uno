@@ -1,11 +1,12 @@
-from deck import Deck,COLOURS,VALUES,Card
+from deck import Deck
 
 class Player:
 	def __init__(self,name:str,deck:Deck,num_cards):
-		self.hand = []
-		self.name = name
-		self.deck = deck
+		self.hand:list = []
+		self.name:str = name
+		self.deck:Deck = deck
 		self.deal_cards(num_cards)
+		self.uno_status:bool = False
 
 	def __str__(self):
 		return self.name
@@ -24,14 +25,14 @@ class Player:
 	def order_hand(self):
 		self.hand = sorted(self.hand, key=lambda x: (x.colour, x.value,x.special))
 
-	def uno_status(self) -> bool:
-		if len(self.hand) == 1:
-			return True
-		return False
-
 	def show_hand(self):
+		text_prefix = {'Green':"\033[1;32m",'Blue':"\033[1;34m",'Yellow':"\033[1;33m",'Red':"\033[1;31m"}
+		text_suffix = "\033[00m"
 		for card in self.hand:
-			print(card)
+			if card.colour != "Wild":
+				print(text_prefix[card.colour] + str(card) + text_suffix)
+			else:
+				print(card)
 
 	def play_card(self,card_id,colour):
 		id = 0
@@ -46,8 +47,6 @@ class Player:
 		# print(f"ACTIVE CARD = {active_card}")
 
 		if player_card.colour == colour or player_card.value == active_card.value or player_card.colour == 'Wild':
-			print('can play card')
-			print('')
 			self.hand.pop(id)
 			self.deck.discard.append(player_card)
 

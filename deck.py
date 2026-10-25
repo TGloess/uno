@@ -2,6 +2,8 @@ import random
 
 COLOURS = ["Red","Blue","Green","Yellow"]
 VALUES = [0,1,2,3,4,5,6,7,8,9]
+text_prefix = {'Green':"\033[1;32m",'Blue':"\033[1;34m",'Yellow':"\033[1;33m",'Red':"\033[1;31m"}
+text_suffix = "\033[00m"
 
 class Deck:
 	
@@ -65,7 +67,12 @@ class Deck:
 		
 
 	def show_active_card(self):
-		print(self.active_card())
+		card = self.active_card()
+		if card.colour != "Wild":
+			print(text_prefix[card.colour] + str(card) + text_suffix)
+		else:
+			print(card)
+
 
 
 class Card:
@@ -76,9 +83,13 @@ class Card:
 		self.id = id
 
 	def __str__(self):
+		global text_prefix,text_suffix
 		if self.colour in COLOURS and self.value<10:
+			#return text_prefix[self.colour] + self.colour + text_suffix + " " + str(self.value)
 			return self.colour + " " + str(self.value)
 		elif self.colour != "Wild":
+			#return text_prefix[self.colour] + self.colour + text_suffix + " " + str(self.special)
 			return self.colour + " " + str(self.special)
 		else:
 			return self.special
+		
